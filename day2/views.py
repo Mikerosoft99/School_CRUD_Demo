@@ -50,8 +50,8 @@ def update_student(request, id):
         return render(request, 'day2/update_student.html', {'student': student})
 
     elif request.method == 'POST':
-        student.f_name = request.POST['f_name'].title
-        student.l_name = request.POST['l_name'].title
+        student.f_name = request.POST['f_name'].title()
+        student.l_name = request.POST['l_name'].title()
         student.age = request.POST['age']
         student.save()
         messages.success(request, 'Student updated successfully.')
@@ -81,18 +81,20 @@ def signin(request):
         return render(request, 'day2/signin.html')
 
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
-        user = User.objects.get(email=email)
-
-        if user and user.password == password:
-            request.session['user_email'] = email
-            messages.success(request, f'Hello, {user.name}')
-
-            return redirect("home")
-        else:
-            messages.error(request, 'Invalid email or password!')
+        try:
+            user = User.objects.get(email=email)
+            if user.password == password:
+                request.session['user_email'] = email
+                messages.success(request, f'Hello, {user.name}')
+                return redirect("home")
+            else:
+                messages.error(request, 'Incorrect password. Please try again.')
+                return render(request, 'day2/signin.html')
+        except:
+            messages.error(request, "This email doesn't exist. Please sign up first.")
             return render(request, 'day2/signin.html')
 
 def signout(request):
