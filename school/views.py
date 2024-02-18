@@ -97,7 +97,7 @@ def signin(request):
             messages.error(request, "This email doesn't exist. Please sign up first.")
             return render(request, 'school/signin.html')
 
-def signout(request):
+def logout(request):
     request.session.clear()
     return redirect("signin")
 
