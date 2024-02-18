@@ -98,3 +98,6 @@ def signin(request):
 def signout(request):
     request.session.clear()
     return redirect("signin")
+
+def about(request):
+    return render(request, "day2/about.html")

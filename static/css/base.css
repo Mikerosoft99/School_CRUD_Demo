@@ -40,29 +40,19 @@ main {
   padding: 10px;
 }
 
-footer {
-  width: 100%;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
+.messages-container.fade-out {
+  animation: fadeOut 1s ease;
 }
 
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
 
-.footer-left,
-.footer-right {
-  flex-basis: 45%;
-}
-
-.footer-left h3,
-.footer-right h3 {
-  color: #469bb8;
+  to {
+    opacity: 0;
+    display: none;
+  }
 }
 
 .messages {
@@ -71,6 +61,10 @@ footer {
   margin: 5px auto;
   padding: 0;
   text-align: center;
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .messages li {
