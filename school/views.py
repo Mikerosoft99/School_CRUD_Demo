@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from day2.models import Student, User
+from school.models import Student, User
 from django.contrib import messages
 
 # Create your views here.
@@ -7,7 +7,7 @@ from django.contrib import messages
 def home(request):
     # print(request.session.items())
     if 'user_email' in request.session:
-        return render(request, 'day2/home.html')
+        return render(request, 'school/home.html')
     else:
         messages.error(request, 'You need to sign in first.')
         return redirect("signin")
@@ -15,7 +15,7 @@ def home(request):
 def students(request):
     if 'user_email' in request.session:
         students = Student.objects.all()
-        return render(request, 'day2/students.html',{'students': students})
+        return render(request, 'school/students.html',{'students': students})
     else:
         messages.error(request, 'You need to sign in first.')
         return redirect("signin")
@@ -31,7 +31,7 @@ def create_student(request):
                 messages.success(request, 'Student created successfully.')
 
                 return redirect('students')
-            return render(request, 'day2/create_student.html')
+            return render(request, 'school/create_student.html')
         else:
             messages.error(request, 'You need to sign in first.')
             return redirect("signin")
@@ -47,7 +47,7 @@ def update_student(request, id):
     student = get_object_or_404(Student, id=id)
 
     if request.method == 'GET':
-        return render(request, 'day2/update_student.html', {'student': student})
+        return render(request, 'school/update_student.html', {'student': student})
 
     elif request.method == 'POST':
         student.f_name = request.POST['f_name'].title()
@@ -60,7 +60,7 @@ def update_student(request, id):
 
 def signup(request):
     if request.method == 'GET':
-        return render(request, 'day2/signup.html')
+        return render(request, 'school/signup.html')
 
     if request.method == 'POST':
         email = request.POST['email']
@@ -69,16 +69,16 @@ def signup(request):
 
         if User.objects.filter(email=email).exists():
             messages.error(request, 'Email already signed up! You can try signing in.')
-            return render(request, 'day2/signup.html')
+            return render(request, 'school/signup.html')
 
         user = User.objects.create(email=email, password=password, name=name)
-        messages.success(request, 'Congratulations, You can signing in now.')
+        messages.success(request, 'Congratulations, You can sign in now.')
 
         return redirect("signin")
 
 def signin(request):
     if request.method == 'GET':
-        return render(request, 'day2/signin.html')
+        return render(request, 'school/signin.html')
 
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -92,14 +92,14 @@ def signin(request):
                 return redirect("home")
             else:
                 messages.error(request, 'Incorrect password. Please try again.')
-                return render(request, 'day2/signin.html')
+                return render(request, 'school/signin.html')
         except:
             messages.error(request, "This email doesn't exist. Please sign up first.")
-            return render(request, 'day2/signin.html')
+            return render(request, 'school/signin.html')
 
 def signout(request):
     request.session.clear()
     return redirect("signin")
 
 def about(request):
-    return render(request, "day2/about.html")
+    return render(request, "school/about.html")
