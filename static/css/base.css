@@ -1,66 +1,90 @@
-        body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-        }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-        header {
-          background-color: #333;
-          color: #fff;
-          padding: 5px;
-          text-align: center;
-        }
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+}
 
-        nav {
-          background-color: #555;
-          padding: 5px 10px;
-        }
+nav {
+  background-color: #555;
+  padding: 5px 10px;
+}
 
-        nav ul {
-          list-style-type: none;
-          padding: 0 20px;
-        }
+nav ul {
+  list-style-type: none;
+  padding: 0 20px;
+}
 
-        nav ul li {
-          display: inline;
-          margin-right: 20px;
-        }
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
 
-        nav ul li a {
-          color: #fff;
-          text-decoration: none;
-          font-weight: bold;
-        }
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-        nav ul li a:hover {
-          color: #469bb8;
-        }
+nav ul li a:hover {
+  color: #469bb8;
+}
 
-        main {
-          padding: 10px;
-        }
+main {
+  padding: 10px;
+}
 
-        footer {
-          background-color: #333;
-          color: #fff;
-          text-align: center;
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-        }
+footer {
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
 
-        .footer-content {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-around;
-        }
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
-        .footer-left,
-        .footer-right {
-          flex-basis: 45%;
-        }
+.footer-left,
+.footer-right {
+  flex-basis: 45%;
+}
 
-        .footer-left h3,
-        .footer-right h3 {
-          color: #469bb8;
-        }
+.footer-left h3,
+.footer-right h3 {
+  color: #469bb8;
+}
+
+.messages {
+  list-style-type: none;
+  width: 30%;
+  margin: 5px auto;
+  padding: 0;
+  text-align: center;
+}
+
+.messages li {
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.messages .error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.messages .success {
+  background-color: #daf8d7;
+  color: #1c7223;
+}

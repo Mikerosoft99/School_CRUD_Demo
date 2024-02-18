@@ -1,1 +1,38 @@
 {% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/students.css' %}">
+{% endblock style %}
+{% block content %}
+<h2 class="title">Students List</h2>
+
+{% if students %}
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th colspan="2" class="actions-header">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.f_name }}</td>
+                    <td>{{ student.l_name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>
+                        <a class="button delete-btn" href="{% url 'delete_student' student.id %}">Delete</a>
+                    </td>
+                    <td>
+                        <a class="button update-btn" href="{% url 'update_student' student.id %}">Update</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <h4 class="message">Sorry, No student data available at the moment.</h4>
+{% endif %}
+{% endblock content %}

@@ -7,6 +7,8 @@
         <meta name="description"
               content="A CRUD application for managing students in a school">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block style %}
+        {% endblock style %}
         <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
         <title>My School CRUD</title>
     </head>
@@ -16,17 +18,29 @@
                 <li>
                     <a href="{% url 'home' %}">Home</a>
                 </li>
-               <li>
+                <li>
                     <a href="{% url 'students' %}">Students</a>
                 </li>
                 <li>
                     <a href="{% url 'create_student' %}">Create a new student</a>
                 </li>
+                {% if 'user_email' in request.session %}
+                    <li>
+                        <a href="{% url 'signout' %}">Sign Out</a>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
         <header>
             <h2>School CRUD</h2>
         </header>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <main>
             {% block content %}
             {% endblock content %}
@@ -34,8 +48,10 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-left">
-                    <h3>About Us</h3>
-                    <p>Welcome to My School CRUD. We are dedicated to providing a simple and efficient solution for managing students in schools.</p>
+                    <h3>About</h3>
+                    <p>
+                        Welcome to My School CRUD. We are dedicated to providing a simple and efficient solution for managing students in schools.
+                    </p>
                     <p>© 2024 My School CRUD. All rights reserved.</p>
                 </div>
                 <div class="footer-right">

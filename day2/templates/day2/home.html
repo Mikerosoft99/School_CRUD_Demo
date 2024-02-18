@@ -1,6 +1,11 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock style %}
 {% block content %}
-    <h2>Welcome to My School CRUD</h2>
-    <p>This is a simple CRUD application built with Django for managing students in a school.</p>
+    <div class="welcome-container">
+        <h2>Welcome to My School CRUD</h2>
+        <p>This is a simple CRUD application built with Django for managing students in a school.</p>
+    </div>
 {% endblock content %}

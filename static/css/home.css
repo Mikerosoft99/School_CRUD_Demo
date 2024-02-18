@@ -1,0 +1,17 @@
+.welcome-container {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.welcome-container h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.welcome-container p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}

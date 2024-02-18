@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/update_student.css' %}">
+{% endblock style %}
+{% block content %}
+    <div class="form-container">
+        <h2>Update Student</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="f_name">First Name:</label>
+            <input type="text" id="f_name" name="f_name" value="{{ student.f_name }}">
+            <br>
+            <label for="l_name">Last Name:</label>
+            <input type="text" id="l_name" name="l_name" value="{{ student.l_name }}">
+            <br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" value="{{ student.age }}">
+            <br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+{% endblock content %}
